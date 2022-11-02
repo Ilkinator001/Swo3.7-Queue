@@ -30,8 +30,37 @@ void test_implicit_constructor_call() {
   delete q.dequeue();
 }
 
+Data *demo_data[] = {
+  "zero"_Data, "one"_Data, "two"_Data
+};
+
+void test_dynamic_queue() {
+  cout << "---- ---- ---- dynamic queue ---- ---- ----" << endl;
+
+  Queue *q = new Queue(11);
+  DEBUG(*q);
+
+  for (Data *item: demo_data) {
+    q->enqueue(item);
+    DEBUG(*q);
+  }
+
+  while(not q->is_empty())
+    DEBUG(*q->dequeue());
+
+  delete q;
+}
+
+void cleanup() {
+  for (const auto &item: demo_data) {
+    delete item;
+  }
+}
+
 int main() {
   test_basics();
   test_implicit_constructor_call();
+  test_dynamic_queue();
+  cleanup();
   return 0;
 }
