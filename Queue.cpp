@@ -18,6 +18,17 @@ Queue::~Queue() {
   cout << "~Queue(" << capacity << ") destructed" << endl;
 }
 
+Queue::Queue(const Queue &q)
+    : start(q.start),
+      count(q.count),
+      capacity(q.capacity),
+      data(new Data*[capacity]) {
+  for (int i = 0; i<count; i++) {
+    data[at(i)] = q.data[q.at(i)];
+  }
+  cout << "Queue(" << capacity << ") copied" << endl;
+}
+
 bool Queue::is_empty() const {
   return count == 0;
 }

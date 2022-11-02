@@ -15,6 +15,7 @@ private:
 public:
   explicit Queue(int capacity = 10);
   virtual ~Queue();
+  Queue(const Queue &q);
 
   bool is_empty() const;
   bool is_full() const;
