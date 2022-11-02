@@ -29,6 +29,31 @@ Queue::Queue(const Queue &q)
   cout << "Queue(" << capacity << ") copied" << endl;
 }
 
+Queue & Queue::operator = (const Queue &q) {
+  cout << "Queue::operator=(const Queue &q)" << endl;
+
+  // check self assignment
+  if (this == &q) {
+    return *this;
+  }
+
+  if (capacity != q.capacity) {
+    Data **new_data = new Data*[q.capacity];
+    capacity = q.capacity;
+    delete[] data;
+    data = new_data;
+  }
+
+  start = q.start;
+  count = q.count;
+
+  for(int i = 0; i<count; i++) {
+    data[at(i)] = q.data[q.at(i)];
+  }
+
+  return *this;
+}
+
 bool Queue::is_empty() const {
   return count == 0;
 }
