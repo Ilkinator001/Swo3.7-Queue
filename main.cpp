@@ -22,7 +22,16 @@ void test_basics() {
   DEBUG(q1);
 }
 
+void test_implicit_constructor_call() {
+  Queue q(1);
+  q.enqueue("data"_Data);
+  DEBUG(q);
+  DEBUG(q.is_full());
+  delete q.dequeue();
+}
+
 int main() {
   test_basics();
+  test_implicit_constructor_call();
   return 0;
 }

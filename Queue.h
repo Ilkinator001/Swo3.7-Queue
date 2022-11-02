@@ -13,7 +13,7 @@ private:
   constexpr int at(int i) const { return (start+i) % capacity; }
 
 public:
-  Queue(int capacity = 10); // make explicit later
+  explicit Queue(int capacity = 10);
   virtual ~Queue();
 
   bool is_empty() const;
