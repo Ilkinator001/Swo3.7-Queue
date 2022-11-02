@@ -51,6 +51,26 @@ void test_dynamic_queue() {
   delete q;
 }
 
+void test_copying() {
+  cout << "---- ---- ---- copying ---- ---- ----" << endl;
+  Queue q1;
+  q1.enqueue(demo_data[0]);
+  Queue q2 = q1;
+
+  DEBUG(q1);
+  DEBUG(q2); // seems to work fine
+
+  cout << "enqueue to q1" << endl;
+  q1.enqueue(demo_data[1]);
+  DEBUG(q1);
+  DEBUG(q2); // seems to work fine
+
+  cout << "enqueue to q2" << endl;
+  q2.enqueue(demo_data[2]);
+  DEBUG(q1);
+  DEBUG(q2); // NOTE; overwrites q1
+}
+
 void cleanup() {
   for (const auto &item: demo_data) {
     delete item;
@@ -61,6 +81,7 @@ int main() {
   test_basics();
   test_implicit_constructor_call();
   test_dynamic_queue();
+  test_copying();
   cleanup();
   return 0;
 }
