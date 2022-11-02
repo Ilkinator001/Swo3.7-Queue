@@ -54,6 +54,25 @@ Queue & Queue::operator = (const Queue &q) {
   return *this;
 }
 
+bool Queue::operator == (const Queue &q) const {
+  if (this == &q)
+    return true;
+
+  if (count != q.count)
+    return false;
+
+  if (capacity != q.capacity)
+    return false;
+
+  for (int i = 0; i<count; i++) {
+    Data *d1 = data[at(i)];
+    Data *d2 = q.data[q.at(i)];
+    if (*d1 != *d2)
+      return false;
+  }
+  return true;
+}
+
 bool Queue::is_empty() const {
   return count == 0;
 }
@@ -68,12 +87,24 @@ void Queue::enqueue(Data *item) {
   ++count;
 }
 
+void Queue::enqueue(std::initializer_list<Data*> l) {
+  for (const auto& d : l) {
+    enqueue(d);
+  }
+}
+
 Data * Queue::dequeue() {
   assert(not is_empty());
   Data *item = data[start];
   start = at(1);
   --count;
   return item;
+}
+
+void Queue::delete_elements() {
+  while (!is_empty()) {
+    delete dequeue();
+  }
 }
 
 std::ostream & operator << (std::ostream &os, const Queue &q) {

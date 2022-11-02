@@ -1,6 +1,7 @@
 // file: Queue.h
 #pragma once
 #include <ostream>
+#include <initializer_list>
 #include "Data.h"
 
 class Queue {
@@ -18,11 +19,17 @@ public:
   Queue(const Queue &q);
   Queue & operator = (const Queue &q);
 
+  bool operator == (const Queue &q) const;
+  bool operator != (const Queue &q) const { return !operator==(q); }
+
   bool is_empty() const;
   bool is_full() const;
 
   void enqueue(Data *item);
+  void enqueue(std::initializer_list<Data*> l);
   Data* dequeue();
+
+  void delete_elements();
 
   // friends
   friend std::ostream & operator << (std::ostream &os, const Queue &q);

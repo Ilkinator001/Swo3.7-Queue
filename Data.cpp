@@ -14,6 +14,15 @@ Data::~Data() {
   cout << "~Data(" << value << ") destructed" << endl;
 }
 
+Data::operator std::string() const {
+  cout << "Data::operator string()" << endl;
+  return value;
+}
+
+bool Data::operator==(const Data &d) const {
+  return value == d.value; // delegate to std::string::operator==
+}
+
 std::ostream & operator << (std::ostream &os, const Data &d) {
   return os << '"' << d.value << '"' << std::flush;
 }

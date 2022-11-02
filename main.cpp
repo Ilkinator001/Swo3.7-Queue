@@ -93,6 +93,31 @@ void test_assignment() {
   DEBUG(q2); // NOTE; overwrites q1
 }
 
+void test_casting_and_comparison() {
+  cout << "---- ---- ---- casting & comparison ---- ---- ----" << endl;
+  Data d = std::string("implicit");
+  std::string s = d; // cast operator
+  DEBUG(d);
+  DEBUG(s);
+  Queue q1;
+  Queue q2;
+  q1.enqueue({"Hello"_Data, "World"_Data});
+  q2.enqueue({"oopise"_Data, "Hello"_Data, "World"_Data});
+
+  DEBUG(q1);
+  DEBUG(q2);
+  DEBUG(q1 == q2);
+
+  delete q2.dequeue();
+  cout << "dequeueing from q2" << endl;
+  DEBUG(q1);
+  DEBUG(q2);
+  DEBUG(q1 == q2);
+
+  q1.delete_elements();
+  q2.delete_elements();
+}
+
 void cleanup() {
   for (const auto &item: demo_data) {
     delete item;
@@ -105,6 +130,7 @@ int main() {
   test_dynamic_queue();
   test_copying();
   test_assignment();
+  test_casting_and_comparison();
   cleanup();
   return 0;
 }
