@@ -26,6 +26,9 @@ public:
   bool is_empty() const;
   bool is_full() const;
 
+  bool operator==(const Queue& q) const;
+  bool operator!=(const Queue& q) const { return !operator==(q); };
+
   void enqueue(Data* item);
   Data* dequeue();
 

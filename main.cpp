@@ -110,12 +110,25 @@ static void test_assignment() {
 }
 
 
+static void test_casting_and_comparision() {
+  cout << "---- ---- ---- test_casting_and_comparision ---- ---- ----" << endl;
+
+  // class constructo with std::string, constructor with one argument an be used for conversion
+  // use explicit on constructor to disable this
+  Data d = std::string("implicit");
+  std::string s = d;  // cast operator
+
+  DEBUG(d);
+  DEBUG(s);
+}
+
 int main() {
   test_basics();
   test_implicit_constructor_call();
   test_dynamic_queue();
   test_copying();
   test_assignment();
+  test_casting_and_comparision();
 
   cleanup();
   return 0;

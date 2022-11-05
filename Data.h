@@ -12,6 +12,10 @@ public:
   Data(const std::string& value);
   virtual ~Data();
 
+  operator std::string() const;
+  bool operator==(const Data& d) const { return value == d.value; };
+  bool operator!=(const Data& d) const { return !operator==(d); };
+
   // friend definiert Methode von auﬂerhalb der Klasse
   friend std::ostream& operator<<(std::ostream& os, const Data& d);
 };

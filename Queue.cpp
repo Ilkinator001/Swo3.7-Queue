@@ -60,6 +60,27 @@ bool Queue::is_full() const
     return count >= capacity;
 }
 
+bool Queue::operator==(const Queue& q) const
+{
+  if (this == &q)
+    return true;
+
+  if (count != q.count)
+    return false;
+
+  if (capacity != q.capacity)
+    return false;
+
+  for (int i = 0; i < capacity; i++) {
+    Data* d1 = data[at(i)];
+    Data* d2 = q.data[at(i)];
+    if (*d1 != *d2)
+      return false;
+  }
+
+  return true;
+}
+
 void Queue::enqueue(Data* item)
 {
   assert(!is_full());

@@ -15,6 +15,13 @@ Data::~Data()
   cout << "~Data(" << value << ") deconstructed" << endl;
 }
 
+// conversion operator to std::string
+Data::operator std::string() const
+{
+  cout << "Data:: operator string()" << endl;
+  return value;
+}
+
 Data* operator""_Data(const char* s, size_t)
 {
   return new Data(s);
