@@ -12,7 +12,7 @@ Data::Data(const std::string& value) : value(value)
 
 Data::~Data()
 {
-  cout << "Data(" << value << ") deconstructed" << endl;
+  cout << "~Data(" << value << ") deconstructed" << endl;
 }
 
 Data* operator""_Data(const char* s, size_t)
