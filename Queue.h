@@ -15,7 +15,7 @@ private:
   /*constexpr*/ int at(int i) const { return (start + i) % capacity; }
 
 public:
-  Queue(int capacity = 10);
+  explicit Queue(int capacity = 10); // explicit verhindert Contructor call z.B. Queue q = 1;
 
   virtual ~Queue();
 
