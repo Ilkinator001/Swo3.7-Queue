@@ -16,12 +16,12 @@ private:
 
 public:
   explicit Queue(int capacity = 10); // explicit verhindert Contructor call z.B. Queue q = 1;
+
+  // rule of three ------
   virtual ~Queue();
-
-  Queue(const Queue& q);
-
-  // Queue& wegen mehrfachzuweisung z.B. a = b = c --> a=c, b=c, c=c
-  Queue& operator= (const Queue& q);
+  Queue(const Queue& q);  
+  Queue& operator= (const Queue& q);  // Queue& wegen mehrfachzuweisung z.B. a = b = c --> a=c, b=c, c=c
+  // rule of three ------
 
   bool is_empty() const;
   bool is_full() const;
