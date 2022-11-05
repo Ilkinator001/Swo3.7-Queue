@@ -88,6 +88,13 @@ void Queue::enqueue(Data* item)
   count++;
 }
 
+void Queue::enqueue(std::initializer_list<Data*> l)
+{
+  for (const auto d : l) {
+    enqueue(d);
+  }
+}
+
 Data* Queue::dequeue()
 {
   assert(!is_empty());
@@ -95,6 +102,13 @@ Data* Queue::dequeue()
   start = at(1);
   count--;
   return item;
+}
+
+void Queue::delete_elements()
+{
+  while (!is_empty()) {
+    delete data;
+  }
 }
 
 std::ostream& operator<<(std::ostream& os, const Queue& q)

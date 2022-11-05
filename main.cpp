@@ -120,6 +120,21 @@ static void test_casting_and_comparision() {
 
   DEBUG(d);
   DEBUG(s);
+
+  Queue q1;
+  Queue q2;
+
+  q1.enqueue({"hello"_Data,"world"_Data, "data"_Data });
+  q2.enqueue({ "oopsie"_Data,"hello"_Data, "world"_Data });
+
+  DEBUG(q1);
+  DEBUG(q2);
+  DEBUG(q1 == q2);
+
+  q1 = q2;
+  DEBUG(q1);
+  DEBUG(q2);
+  DEBUG(q1 == q2);
 }
 
 int main() {

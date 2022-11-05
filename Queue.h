@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ostream>
+#include <initializer_list>
 #include "Data.h"
 
 class Queue
@@ -30,7 +31,10 @@ public:
   bool operator!=(const Queue& q) const { return !operator==(q); };
 
   void enqueue(Data* item);
+  void enqueue(std::initializer_list<Data*> l);
   Data* dequeue();
+
+  void delete_elements();
 
   friend std::ostream& operator<<(std::ostream& os, const Queue& q);
 };
