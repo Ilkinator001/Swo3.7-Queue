@@ -16,7 +16,7 @@ Queue::~Queue()
   cout << "~Queue(" << capacity << ") deconstructed" << endl;
 }
 
-Queue::Queue(const Queue& q) : start(q.start), count(q.count), capacity(q.capacity), data (new Data*[capacity])
+Queue::Queue(const Queue& q) : start(q.start), count(q.count), capacity(q.capacity), data (new Data*[q.capacity])
 {
   for (int i = 0; i < count; i++) {
     data[at(i)] = q.data[at(i)];
