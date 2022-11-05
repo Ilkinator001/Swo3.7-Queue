@@ -16,6 +16,40 @@ Queue::~Queue()
   cout << "~Queue(" << capacity << ") deconstructed" << endl;
 }
 
+Queue::Queue(const Queue& q) : start(q.start), count(q.count), capacity(q.capacity), data (new Data*[capacity])
+{
+  for (int i = 0; i < count; i++) {
+    data[at(i)] = q.data[at(i)];
+  }
+  cout << "Queue(" << capacity << ") copied" << endl;
+}
+
+Queue& Queue::operator=(const Queue& q)
+{
+  // TODO: hier return-Anweisung eingeben
+  cout << "Queue::operator(const Queue& q)" << endl;
+
+  // check self assignment
+  if (this == &q)
+    return *this; // dereference pointer, because return value is reference
+
+  if (capacity != q.capacity) {
+    // store data temporarilly, to be safe in case of exeption
+    Data** new_data = new Data * [q.capacity];
+    capacity = q.capacity;
+
+    delete[] data; // delete only after new data has been successfully allocated (exeption safety)
+    data = new_data;
+  }
+
+  start = q.start;
+
+  for (int i = 0; i < count; i++) {
+    data[at(i)] = q.data[at(i)];
+  }
+  return *this;
+}
+
 bool Queue::is_empty() const
 {
     return count == 0;

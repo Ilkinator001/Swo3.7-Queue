@@ -79,7 +79,31 @@ static void test_copying() {
   DEBUG(q1);
   DEBUG(q2); // seems to work fine
 
+  cout << "enqueue to q2" << endl;
+  q2.enqueue(demo_data[2]);
+  DEBUG(q1);
+  DEBUG(q2);  // NOTE:
+}
+
+
+static void test_assignment() {
+  cout << "---- ---- ---- test_assignment ---- ---- ----" << endl;
+
+  Queue q1;
+  Queue q2;
+  q1.enqueue(demo_data[0]);
+  q2.enqueue(demo_data[1]);
+  q2 = q1;
+
+  DEBUG(q1);
+  DEBUG(q2); // seems to work fine
+
   cout << "enqueue to q1" << endl;
+  q1.enqueue(demo_data[1]);
+  DEBUG(q1);
+  DEBUG(q2); // seems to work fine
+
+  cout << "enqueue to q2" << endl;
   q2.enqueue(demo_data[2]);
   DEBUG(q1);
   DEBUG(q2);  // NOTE:
@@ -91,6 +115,7 @@ int main() {
   test_implicit_constructor_call();
   test_dynamic_queue();
   test_copying();
+  test_assignment();
 
   cleanup();
   return 0;
